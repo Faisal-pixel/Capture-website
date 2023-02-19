@@ -1,32 +1,38 @@
 import React from "react";
 import home1 from "../img/home1.png"
+import Wave from "./Wave";
+
+import {motion} from "framer-motion"
+import { titleAnimation, fadePTagandButton, photoAnim } from "../animation";
 
 //StyledComponent
 import { EachSectionLayout as About, DescriptionDiv, HideDiv, ImageDiv } from "../styles";
+
 
 const AboutSection = () => {
     return (
         <About>
             <DescriptionDiv>
-                <div className="title">
+                <motion.div className="title">
                     <HideDiv>
-                        <h2> We work to make</h2>
+                        <motion.h2 variants={titleAnimation} > We work to make</motion.h2>
                     </HideDiv>
                     <HideDiv>
-                        <h2> your <span>dreams</span></h2>
+                        <motion.h2 variants={titleAnimation}> your <span>dreams</span></motion.h2>
                     </HideDiv>
                     <HideDiv>
-                        <h2>come true</h2>
+                        <motion.h2 variants={titleAnimation}>come true</motion.h2>
                     </HideDiv>
-                </div>
+                </motion.div>
 
-                <p> Contact us for any photography or videography ideas that you have. We have professionals with amazing skills</p>
-                <button>Contact Us</button>
+                <motion.p variants={fadePTagandButton}> Contact us for any photography or videography ideas that you have. We have professionals with amazing skills</motion.p>
+                <motion.button variants={fadePTagandButton}>Contact Us</motion.button>
             </DescriptionDiv>
 
             <ImageDiv>
-                <img src={home1} alt=""/>
+                <motion.img variants={photoAnim} src={home1} alt=""/>
             </ImageDiv>
+            <Wave />
         </About>
     )
 }
