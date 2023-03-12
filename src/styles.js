@@ -1,12 +1,18 @@
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
-export const EachSectionLayout = styled.div`
+export const EachSectionLayout = styled(motion.div)`
     min-height: 90vh;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 5rem 10rem;
     color: white;
+    @media (max-width: 1300px) {
+        flex-direction: column;
+        padding: 2rem 2rem;
+        text-align: center;
+    }
 `
 
 export const DescriptionDiv = styled.div`
@@ -16,6 +22,13 @@ export const DescriptionDiv = styled.div`
     h2 {
         font-weight: lighter;
     }
+    @media (max-width: 1300px) {
+        padding: 0;
+        button {
+            margin: 2rem 0rem;
+        }
+    }
+
 `
 
 export const ImageDiv = styled.div`
@@ -26,6 +39,12 @@ export const ImageDiv = styled.div`
         width: 100%;
         height: 80vh;
         object-fit: cover;
+    }
+
+    @media (max-width: 1300px) {
+        img {
+            width: 100%;
+        }
     }
 `
 

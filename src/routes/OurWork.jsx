@@ -4,14 +4,18 @@ import { Link } from "react-router-dom";
 
 //Animations
 import {motion} from "framer-motion";
-import { pageAnimation, fadePTagandButton, photoAnim, h2UnderLineAnim, slider, sliderContainerAnim } from "../animation";
+import { useScroll } from "../components/useScroll";
+import { pageAnimation, fadePTagandButton, photoAnim, h2UnderLineAnim, slider, sliderContainerAnim, scrollReveal } from "../animation";
 
 //Images
 import athlete from "../img/athlete-small.png"
 import theracer from "../img/theracer-small.png"
 import goodtimes from "../img/goodtimes-small.png"
+import ScrollTop from "../components/ScrollTop";
 
 const OurWork = () => {
+    const [element, controls] = useScroll();
+    const [element2, controls2] = useScroll();
     return(
         <Work variants={pageAnimation} initial="hidden" animate="show" exit="exit">
             <motion.div variants={sliderContainerAnim}>
@@ -28,20 +32,21 @@ const OurWork = () => {
                     <HideImg><motion.img variants={photoAnim} src={athlete} alt="athlete" /></HideImg>   
                 </Link>
             </Movie>
-            <Movie>
+            <Movie ref={element} variants={scrollReveal} animate={controls} initial="hidden">
                 <h2>The Racer</h2>
-                <div className="line"></div>
+                <motion.div variants={h2UnderLineAnim} className="line"></motion.div>
                 <Link to="/ourwork/the-racer">
                     <img src={theracer} alt="the racer" />
                 </Link>
             </Movie>
-            <Movie>
+            <Movie ref={element2} animate={controls2} variants={scrollReveal} initial="hidden">
                 <h2>Good Times</h2>
-                <div className="line"></div>
+                <motion.div variants={h2UnderLineAnim} className="line"></motion.div>
                 <Link to="/ourwork/good-times">
                     <img src={goodtimes} alt="goodtimes" />
                 </Link>
             </Movie>
+            <ScrollTop />
         </Work>
     )
 }
@@ -50,11 +55,14 @@ const Work = styled(motion.div)`
     min-height: 100vh;
     overflow: hidden;
     padding: 5rem 10rem;
+    @media (max-width: 1300px) {
+        padding: 2rem 2rem;
+    }
     h2 {
         padding: 1rem 0rem;
     }
 `
-const Movie = styled.div`
+const Movie = styled(motion.div)`
     padding-bottom: 10rem;
     .line {
         height: 0.5rem;

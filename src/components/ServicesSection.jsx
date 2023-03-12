@@ -6,10 +6,13 @@ import teamwork from "../img/teamwork.svg";
 import home2 from "../img/home2.png";
 import { EachSectionLayout, DescriptionDiv, ImageDiv } from "../styles";
 import styled from "styled-components";
+import { useScroll } from "./useScroll";
+import { scrollReveal } from "../animation";
 
 const ServicesSection = () => {
+    const [element, controls] = useScroll();
     return (
-        <Services>
+        <Services variants={scrollReveal} ref={element} animate={controls} initial="hidden">
             <DescriptionDiv>
                 <h2>High <span>quality</span> services</h2>
 
@@ -68,6 +71,9 @@ const Services = styled(EachSectionLayout)`
 const Cards = styled.div`
     display: flex;
     flex-wrap: wrap;
+    @media (max-width: 1300px) {
+        justify-content: center;
+    }
 `
 const Card = styled.div`
     flex-basis: 50%;
